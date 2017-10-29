@@ -1,3 +1,7 @@
+# Ignore IDEA directory
+.idea/*
+
+# Ignore composer and libraries
 composer.phar
 /vendor/
 
