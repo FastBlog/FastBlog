@@ -3,6 +3,6 @@
 //   these columns will be merged once find out the right queries :P
 TABLE: articles
 COLUMNS:
-_______________________________________________________________________________________________________________ //__________
-| int - length(?) | varchar | int - length(1) | varchar | int - length(2) | int - length(2) | int - length(4) | //datetime |
-|        id       |  title  |    published    | preview |       day       |      month      |       year      | //datetime |
+_________________________________________________________________________________________________________________________ //_______________
+| int - length(?) | varchar | varchar | int - length(1) | varchar | int - length(2) | int - length(2) | int - length(4) | //   datetime   |
+|        id       |  title  |  alias  |    published    | preview |       day       |      month      |       year      | // publish_date |

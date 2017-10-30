@@ -6,35 +6,39 @@
 
 namespace HexelDev\Core;
 
-class Configuration {
-
+return [
     /*
-     * MySql configuration
+     * MySql configuration values
      */
-    public static $MYSQL_HOST = "";
-    public static $MYSQL_PORT = "";
-    public static $MYSQL_USER = "";
-    public static $MYSQL_PASSWORD = "";
-    public static $MYSQL_DB = "";
+
+    "mysql" => [
+        "host" => "",
+        "port" => "",
+        "username" => "",
+        "password" => "",
+        "db" => ""
+    ],
 
     /*
      * Domain name
      */
-    public static $DOMAIN = "";
+    "domain" => [
+        "domain" => ""
+    ],
 
     /*
-     * Paths to access the home and admin directory
+     * Paths configuration values
      */
-    public static $HOME_PATH = "";
-    public static $ADMIN_PATH = "";
+    "paths" => [
+        "home" => "",
+        "admin" => "",
+        "articles" => "../storage"
+    ],
 
     /*
-     * Saved articles html files
+     * Get options configuration values
      */
-    public static $ARTICLES_PATH = "../storage";
-
-    /*
-     * How many articles preview must be loaded before rendering every front-end page
-     */
-    public static $LAST_ARTICLES_PREVIEW_NUMBER = "";
-}
+    "options" => [
+        "latest_articles_preview_number" => ""
+    ]
+];
