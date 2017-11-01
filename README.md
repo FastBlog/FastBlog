@@ -13,6 +13,8 @@ Composer
 -----
 This project uses [Composer](https://getcomposer.org/), a Dependency Manager for PHP.
 
+We require **PHP >= 5.3.0**
+
 ##### Dependecies
 This project uses third-party dependencies
  -  **Klein.php:** is a fast & flexible router for PHP 5.3+ ([GitHub](https://github.com/klein/klein.php)) (MIT License)

@@ -65,7 +65,8 @@ class Article {
              */
             $file = fopen($filename, "rb");
             $body_length = fread($file, sizeof(PHP_INT_SIZE));
-            $fb_integration_length = $title = fread($file, sizeof(PHP_INT_SIZE));
+            // Commenting this out cuz it will be needed if other integrations will be required
+            // $fb_integration_length = $title = fread($file, sizeof(PHP_INT_SIZE));
             fclose($file);
 
             /*
@@ -73,7 +74,7 @@ class Article {
              * file_get_contents() should be the best option for this operation.
              * an alternative should be an fread() using the $file pointer just after the lengths block
              */
-            $text = file_get_contents($filename, true, null ,$body_length + $fb_integration_length);
+            $text = file_get_contents($filename, true, null ,2 * PHP_INT_SIZE);
             $text = wordwrap($text, $body_length, "\<splitme\>");
             $array = explode("\<splitme\>",$text);
 
