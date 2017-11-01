@@ -39,6 +39,7 @@ return [
      * Get options configuration values
      */
     "options" => [
+        "article_preview_allowed_pages" => ["index.html"],
         "latest_articles_preview_number" => ""
     ]
 ];

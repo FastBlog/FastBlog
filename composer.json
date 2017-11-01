@@ -10,7 +10,6 @@
   ],
   "require": {
     "klein/klein": "^2.1",
-    "twig/twig": "^2.4",
     "j4mie/idiorm": "^1.5"
   }
 }

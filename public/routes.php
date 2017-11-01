@@ -10,7 +10,6 @@ use HexelDev\Core\ArticlesLoaderUtils;
 use HexelDev\Core\FileLoader;
 use Klein\Klein;
 use \ORM, \PDO;
-use \Twig_Environment, \Twig_Loader_Filesystem;
 use HexelDev\Core\Configuration;
 
 require_once __DIR__ . '../vendor/autoload.php';
@@ -33,10 +32,9 @@ ORM::configure(array(
 ));
 
 /*
- * Setup routes and template handler
+ * Setup routes
  */
 $klein = new Klein();
-$twig = new Twig_Environment(new Twig_Loader_Filesystem('../app/views'));
 
 /*
  * Setup a title validator
@@ -54,13 +52,18 @@ $service->addValidator('title', function ($str) {
 */
 $klein->respond('/[*:title]', function ($request, $response, $service) {
     $service->validateParam('title')->isTitle();
-    if(file("../app/views/" + $request->title + ".html").exist) {
+    if(file("../app/views/" + $request->title + ".phtml").exist) {
         $config = include('../src/core/configuration.php');
-        $previews = (new ArticlesLoaderUtils())->getLastXArticles($config["options"]["latest_articles_preview_number"]);
-        $previews->count();
-        $response->body($twig->render( $request->title + ".html", array(
-            //First x articles passed on every page
-        )));
+        $array = array(
+
+        );
+
+        if(in_array($request->title + ".html", $config["options"]["article_preview_allowed_pages"])){
+            $previews = (new ArticlesLoaderUtils())->getLastXArticles($config["options"]["latest_articles_preview_number"]);
+            $array['latests'] = $previews;
+        }
+
+        $service->render($request->title + '.phtml', $array);
     }
 });
 
@@ -73,19 +76,18 @@ $klein->respond('/article/[i:year]/[i:month]/[*:title]', function ($request, $re
     $service->validateParam('title')->isTitle();
     $article = new Article($request->year, $request->month, $request->title);
     if($article->exist()) {
-        $response->body($twig->render('article.html', array(
+        $service->render('article.phtml', array(
             'p_day' => $article->getDay(),
             'p_month' => $article->getMonth(),
             'p_year' => $article->getYear(),
             'title' => $article->getTitle(),
             'body' => $article->getBody(),
             'social' => $article->getSocial()
-        )));
+        ));
     } else {
         $config = include("../src/core/configuration.php");
-        $response->body($twig->render('404.html', array(
-            'home' => $config["paths"]["home"]
-        )));
+
+        $service->render('404.phtml', array('home' => $config["paths"]["home"]));
     }
 });
 
