@@ -17,7 +17,7 @@ class ArticlesLoaderUtils {
     /*
      * Get the last $x articles from the latest one
      */
-    public function getLastXArticles(int $x) {
+    public function getLastXArticles($x) {
         $previews = ORM::forTable('articles')
             ->orderByDesc('publish_date')
             ->limit($x)->find_many();
@@ -28,7 +28,7 @@ class ArticlesLoaderUtils {
     /*
      * Get the specified article
      */
-    public function getArticle(int $year, int $month, int $title) {
+    public function getArticle($year, $month, $title) {
         $article = ORM::forTable('articles')->where(array(
             'title' => $title,
             'year' => $year,

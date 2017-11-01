@@ -26,7 +26,7 @@ class Article {
     private $article_body;
     private $article_fb;
 
-    public function __construct(int $year, int $month, string $alias) {
+    public function __construct($year, $month, $alias) {
         $this->year = $year;
         $this->month = $month;
         $this->alias = $alias;
