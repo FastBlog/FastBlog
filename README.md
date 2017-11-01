@@ -16,7 +16,6 @@ This project uses [Composer](https://getcomposer.org/), a Dependency Manager for
 ##### Dependecies
 This project uses third-party dependencies
  -  **Klein.php:** is a fast & flexible router for PHP 5.3+ ([GitHub](https://github.com/klein/klein.php)) (MIT License)
- -  **Twig:** the flexible, fast, and secure template language for PHP ([GitHub](https://github.com/twigphp/Twig)) (BSD 3-clause "New" or "Revised" License)
  -  **Idiorm:** a lightweight nearly-zero-configuration object-relational mapper and fluent query builder for PHP5. ([GitHub](https://github.com/j4mie/idiorm)) (BSD license)
 
 Installation
