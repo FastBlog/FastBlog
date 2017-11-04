@@ -1,6 +1,6 @@
 <?php
 /**
- * index.php
- * User: HexelDev
+ * FastBlog | index.php
+ * License: BSD-2-Clause
  */
 header('Location: /index');

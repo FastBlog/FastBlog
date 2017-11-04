@@ -1,14 +1,15 @@
 <?php
 /**
+ * FastBlog | loaderutils.php
  * Articles loader utility
- * User: HexelDev
+ * License: BSD-2-Clause
  */
 
 namespace HexelDev\Core;
 
 use \ORM;
 
-class ArticlesLoaderUtils {
+class LoaderUtils {
 
     public function __construct() {
 

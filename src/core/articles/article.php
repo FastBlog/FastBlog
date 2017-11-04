@@ -1,11 +1,11 @@
 <?php
 /**
+ * FastBlog | article.php
  * Article initializer and manager
- * User: HexelDev
+ * License: BSD-2-Clause
  */
 
-namespace HexelDev\Core;
-
+namespace FastBlog\Core;
 
 class Article {
 
@@ -30,7 +30,7 @@ class Article {
         $this->year = $year;
         $this->month = $month;
         $this->alias = $alias;
-        $this->configuration = include('configuration.php');
+        $this->configuration = include('../configuration.php');
         $this->init();
     }
 
@@ -39,7 +39,8 @@ class Article {
      */
     public function init() {
         // Load article from db
-        $article = (new ArticlesLoaderUtils())->getArticle($this->year, $this->month, $this->alias);
+        $loader = new LoaderUtils();
+        $article = $loader->getArticle($this->year, $this->month, $this->alias);
 
         // If article exists set variables using the db object
         if($article->count() > 0) {
@@ -56,7 +57,7 @@ class Article {
      * Verify the existence of a file associated to the article and load the contents
      */
     public function load() {
-        $filename = $this->configuration["paths"]["articles"] .'/'.$this->id.'.sb';
+        $filename = STORAGE_PATH.$this->id.'.sb';
         if (file_exists($filename)) {
 
             /*

@@ -1,14 +1,15 @@
 {
   "name": "HexelDev/FastBlog",
-  "description": "A simple php blog",
+  "description": "Simple blog engine, easy to integrate with an existing site built on php-html-css-js",
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "BSD-2-Clause",
   "authors": [
     {
-      "name": "Hexel"
+      "name": "HexelDev"
     }
   ],
   "require": {
+    "php": "^5.3",
     "klein/klein": "^2.1",
     "j4mie/idiorm": "^1.5"
   }

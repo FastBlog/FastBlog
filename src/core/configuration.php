@@ -1,45 +1,45 @@
 <?php
 /**
+ * FastBlog | configuration.php
  * Configuration
- * User: HexelDev
+ * License: BSD-2-Clause
  */
 
-namespace HexelDev\Core;
+namespace FastBlog\Core;
 
-return [
+return array(
+
     /*
      * MySql configuration values
      */
-
-    "mysql" => [
+    "mysql" => array(
         "host" => "",
         "port" => "",
         "username" => "",
         "password" => "",
         "db" => ""
-    ],
+    ),
 
     /*
      * Domain name
      */
-    "domain" => [
+    "domain" => array(
         "domain" => ""
-    ],
+    ),
 
     /*
      * Paths configuration values
      */
-    "paths" => [
-        "home" => "",
+    "paths" => array(
         "admin" => "",
-        "articles" => "../storage"
-    ],
+        "generic" => ""
+    ),
 
     /*
      * Get options configuration values
      */
-    "options" => [
-        "article_preview_allowed_pages" => ["index.html"],
+    "options" => array(
+        "article_preview_allowed_pages" => array("index.html"),
         "latest_articles_preview_number" => ""
-    ]
-];
+    )
+);
