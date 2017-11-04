@@ -1,0 +1,17 @@
+{
+  "mysql": {
+    "host": "",
+    "port": "",
+    "username": "",
+    "password":  "",
+    "db": ""
+  },
+  "domain": "",
+  "paths": {
+    "admin": ""
+  },
+  "options": {
+    "article_preview_allowed_pages": "",
+    "latest_articles_preview_number": ""
+  }
+}

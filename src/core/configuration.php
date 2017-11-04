@@ -7,39 +7,24 @@
 
 namespace FastBlog\Core;
 
-return array(
+class Configuration {
 
-    /*
-     * MySql configuration values
-     */
-    "mysql" => array(
-        "host" => "",
-        "port" => "",
-        "username" => "",
-        "password" => "",
-        "db" => ""
-    ),
+    private $config;
 
-    /*
-     * Domain name
-     */
-    "domain" => array(
-        "domain" => ""
-    ),
+    public function __construct() {
+        $this->load();
+    }
 
-    /*
-     * Paths configuration values
-     */
-    "paths" => array(
-        "admin" => "",
-        "generic" => ""
-    ),
+    private function load() {
+        $file = file_get_contents('configuration/config.json', true);
+        $config = json_decode($file, true);
+    }
 
-    /*
-     * Get options configuration values
+    /**
+     * @return mixed
      */
-    "options" => array(
-        "article_preview_allowed_pages" => array("index.html"),
-        "latest_articles_preview_number" => ""
-    )
-);
+    public function getConfig()
+    {
+        return $this->config;
+    }
+}
