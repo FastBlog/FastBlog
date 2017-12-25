@@ -15,7 +15,7 @@ This project uses [Composer](https://getcomposer.org/), a Dependency Manager for
 
 FastBlog requires **PHP >= 5.3.0**
 
-##### Dependecies
+### Dependecies
 This project uses third-party dependencies
  -  **Klein.php:** is a fast & flexible router for PHP 5.3+ ([GitHub](https://github.com/klein/klein.php)) (MIT License)
  -  **Idiorm:** a lightweight nearly-zero-configuration object-relational mapper and fluent query builder for PHP5. ([GitHub](https://github.com/j4mie/idiorm)) (BSD license)
