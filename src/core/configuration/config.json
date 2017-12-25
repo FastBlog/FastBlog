@@ -11,7 +11,7 @@
     "admin": ""
   },
   "options": {
-    "article_preview_allowed_pages": "",
+    "article_preview_allowed_pages": [],
     "latest_articles_preview_number": ""
   }
 }

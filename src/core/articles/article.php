@@ -9,8 +9,6 @@ namespace FastBlog\Core;
 
 class Article {
 
-    private $configuration;
-
     private $day;
     private $month;
     private $year;
@@ -30,7 +28,6 @@ class Article {
         $this->year = $year;
         $this->month = $month;
         $this->alias = $alias;
-        $this->configuration = include('../configuration.php');
         $this->init();
     }
 
@@ -39,11 +36,11 @@ class Article {
      */
     public function init() {
         // Load article from db
-        $loader = new LoaderUtils();
+        $loader = new DatabaseUtils();
         $article = $loader->getArticle($this->year, $this->month, $this->alias);
 
         // If article exists set variables using the db object
-        if($article->count() > 0) {
+        if($article) {
             $this->id = $article->get('id');
             $this->day = $article->get('date');
             $this->article_title = $article->get('title');
