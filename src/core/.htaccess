@@ -1,4 +1,2 @@
 RewriteEngine On
-Options -Indexes
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . /public/router.php [L]
