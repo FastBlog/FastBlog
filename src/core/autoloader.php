@@ -20,4 +20,3 @@ require_once(SRC_PATH.'core/configuration.php');
  */
 require_once(SRC_PATH.'core/articles/article.php');
 require_once(SRC_PATH.'core/articles/utils/loaderutils.php');
-require_once(SRC_PATH.'core/articles/articlefactory.php');
