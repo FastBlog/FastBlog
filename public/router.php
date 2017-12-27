@@ -19,6 +19,7 @@ $configuration = new Configuration();
 $fastblog = new stdClass();
 $fastblog->config = $configuration->getConfig();
 $fastblog->articlefactory = new ArticleFactory();
+$fastblog->databaseutils = new DatabaseUtils();
 
 /*
  * Initializing MySQL PDO Connection Engine

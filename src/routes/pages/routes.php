@@ -15,7 +15,7 @@ $klein->respond('/[*:title]', function ($request, $response, $service) use($fast
         );
 
         if(in_array($request->title . '.phtml', $config["options"]["article_preview_allowed_pages"])) {
-            $loaderutil = new DatabaseUtils();
+            $loaderutil = $fastblog->databaseutils;
             $previews = $loaderutil->getLastXArticles($config["options"]["latest_articles_preview_number"]);
             $array['latests'] = $previews;
         }
