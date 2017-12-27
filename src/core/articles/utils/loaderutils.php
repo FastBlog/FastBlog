@@ -1,14 +1,15 @@
 <?php
 /**
+ * FastBlog | loaderutils.php
  * Articles loader utility
- * User: HexelDev
+ * License: BSD-2-Clause
  */
 
-namespace HexelDev\Core;
+namespace FastBlog\Core;
 
 use \ORM;
 
-class ArticlesLoaderUtils {
+class DatabaseUtils {
 
     public function __construct() {
 
@@ -17,10 +18,11 @@ class ArticlesLoaderUtils {
     /*
      * Get the last $x articles from the latest one
      */
-    public function getLastXArticles($x) {
+    public function getLastPublishedArticles($limit) {
         $previews = ORM::forTable('articles')
             ->orderByDesc('publish_date')
-            ->limit($x)->find_many();
+            ->limit($limit)
+            ->find_many();
 
         return $previews;
     }

@@ -1,45 +1,33 @@
 <?php
 /**
+ * FastBlog | configuration.php
  * Configuration
- * User: HexelDev
+ * License: BSD-2-Clause
  */
 
-namespace HexelDev\Core;
+namespace FastBlog\Core;
 
-return [
-    /*
-     * MySql configuration values
+class Configuration {
+
+    private $config;
+
+    public function __construct() {
+        $this->load();
+    }
+
+    /**
+     * Load the json configuration file as an array
      */
+    private function load() {
+        $file = file_get_contents('configuration/config.json', true);
+        $this->config = json_decode($file, true);
+    }
 
-    "mysql" => [
-        "host" => "",
-        "port" => "",
-        "username" => "",
-        "password" => "",
-        "db" => ""
-    ],
-
-    /*
-     * Domain name
+    /**
+     * Return the array of configuration values
+     * @return mixed
      */
-    "domain" => [
-        "domain" => ""
-    ],
-
-    /*
-     * Paths configuration values
-     */
-    "paths" => [
-        "home" => "",
-        "admin" => "",
-        "articles" => "../storage"
-    ],
-
-    /*
-     * Get options configuration values
-     */
-    "options" => [
-        "article_preview_allowed_pages" => ["index.html"],
-        "latest_articles_preview_number" => ""
-    ]
-];
+    public function getConfig() {
+        return $this->config;
+    }
+}
