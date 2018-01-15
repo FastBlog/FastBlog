@@ -6,7 +6,7 @@
  */
 namespace FastBlog\Core;
 
-use \ORM;
+use \ORM, \DateTime;
 
 class ACPAuthentication {
 
@@ -21,7 +21,8 @@ class ACPAuthentication {
                 'token' => $_COOKIE['fb_auth_tkn']
             ))->findOne();
             if($session) {
-                if($session->get('ip') == $_SERVER['REMOTE_ADDR']) {
+                $interval = DateTime::createFromFormat('Y-m-d H:i:s',$session->get('start'))->diff(date('Y-m-d H:i:s'));
+                if($interval->d < 30 && $session->get('ip') == $_SERVER['REMOTE_ADDR']) {
                     $this->authenticated = true;
                 } else {
                     $session->delete();
