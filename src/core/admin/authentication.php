@@ -1,14 +1,14 @@
 <?php
 /**
  * FastBlog | authentication.php
- * //File description
+ * ACP authentication class
  * License: BSD-2-Clause
  */
 namespace FastBlog\Core;
 
 use \ORM;
 
-class Authentication {
+class ACPAuthentication {
 
     private $config;
     protected $authenticated = false;
