@@ -14,7 +14,13 @@ CREATE TABLE admin(
     id int NOT NULL,
     nickname varchar(255) NOT NULL,
     email varchar(255) NOT NULL,
-    hash varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE admin_sessions(
+    admin_id int(12) NOT NULL,
+    ip varchar(16) NOT NULL,
+    token varchar(255) NOT NULL
     PRIMARY KEY (id)
 );
