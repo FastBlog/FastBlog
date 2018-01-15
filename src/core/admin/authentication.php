@@ -58,8 +58,6 @@ class ACPAuthentication {
         } else {
             setcookie('fb_auth_tkn', $token, 0,"/" + $this->config["paths"]["admin"], "", $this->config["https"]);
         }
-
-        $_SESSION['TIME'] = time();
     }
 
     public function logout(){
