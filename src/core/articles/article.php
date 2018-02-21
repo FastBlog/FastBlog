@@ -31,7 +31,7 @@ class Article {
         $this->init();
     }
 
-    /*
+    /**
      * Verify the existence of the article and retrieve the associated db object
      */
     public function init() {
@@ -50,7 +50,7 @@ class Article {
         }
     }
 
-    /*
+    /**
      * Verify the existence of a file associated to the article and load the contents
      */
     public function load() {
@@ -58,23 +58,10 @@ class Article {
         if (file_exists($filename)) {
 
             /*
-             * Get blocks single length.
-             * Seems the best way to face this situation, a db interaction will separate the information.
+             * Split the file where the blocks terminate "<!--SPLITME-->"
              */
-            $file = fopen($filename, "rb");
-            $body_length = fread($file, sizeof(PHP_INT_SIZE));
-            // Commenting this out cuz it will be needed if other integrations will be required
-            // $fb_integration_length = $title = fread($file, sizeof(PHP_INT_SIZE));
-            fclose($file);
-
-            /*
-             * Split the file where the blocks terminate
-             * file_get_contents() should be the best option for this operation.
-             * an alternative should be an fread() using the $file pointer just after the lengths block
-             */
-            $text = file_get_contents($filename, true, null ,2 * PHP_INT_SIZE);
-            $text = wordwrap($text, $body_length, "\<splitme\>");
-            $array = explode("\<splitme\>",$text);
+            $text = file_get_contents($filename, true, null);
+            $array = explode("<!--SPLITME-->",$text);
 
             // Set the texts for this article
             $this->article_body = $array[0];
