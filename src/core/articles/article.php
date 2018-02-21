@@ -54,7 +54,7 @@ class Article {
      * Verify the existence of a file associated to the article and load the contents
      */
     public function load() {
-        $filename = STORAGE_PATH.$this->id.'.sb';
+        $filename = STORAGE_PATH.$this->id.'.fba';
         if (file_exists($filename)) {
 
             /*
