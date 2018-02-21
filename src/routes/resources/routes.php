@@ -1,27 +1,27 @@
 <?php
 /**
  * FastBlog | routes.php
- * //File description
+ * Images, JS, CSS headers.
  * License: BSD-2-Clause
  */
 
 $klein->respond('/resources/[*:file].[:type]', function ($request, $response, $service) use($fastblog) {
     $file =  $fastblog->basepath.'app/resources/';
+    $tmp_type = '';
 
-    if($request->param('type') == 'css') {
-        $file = $file.'css/'.$request->param('file').'.'.$request->param('type');
-        header('Content-Type: text/css');
-    } else if($request->param('type') == 'js') {
-        $file = $file.'javascript/'.$request->param('file').'.'.$request->param('type');
-        header('Content-Type: application/javascript');
+    switch( $request->param('type') ) {
+        case "css":
+            $file = $file.'css/'.$request->param('file').'.css';
+            $tmp_type = 'text/css';
+            break;
+        case "js":
+            $file = $file.'javascript/'.$request->param('file').'.js';
+            $tmp_type = 'application/javascript';
+            break;
     }
 
     if(file_exists($file)) {
-        $etag = md5_file($file);
-
-        header('X-Content-Type-Options: nosniff');
-        header('Etag: "'.$etag.'"');
-        header('Last-Modified: '.gmdate('D, d M Y H:i:s', filemtime($file)).' GMT');
+        setHeaders($tmp_type, $file);
 
         $response->file($file);
     } else {
@@ -29,12 +29,41 @@ $klein->respond('/resources/[*:file].[:type]', function ($request, $response, $s
     }
 });
 
-$klein->respond('/images/[*:image]', function ($request, $response, $service) use($fastblog) {
-    $file = $fastblog->basepath.'app/resources/images/'.$request->param('image');
+$klein->respond('/images/[*:image].[:type]', function ($request, $response, $service) use($fastblog) {
+    $file = $fastblog->basepath.'app/resources/images/'.$request->param('image').'.'.$request->param('image');
 
     if(file_exists($file)) {
+        $tmp_type = "";
+        switch( $request->param('type') ) {
+            case "gif":
+                $tmp_type="image/gif";
+                break;
+            case "png":
+                $tmp_type="image/png";
+                break;
+            case "jpeg":
+            case "jpg":
+                $tmp_type="image/jpeg";
+                break;
+            default:
+        }
+
+        setHeaders($tmp_type, $file);
+
         $response->file($file);
     } else {
         $response->code(404)->body("Image not found!");
     }
 });
+
+function setHeaders($type, $file){
+    $etag = md5_file($file);
+
+    header('Content-Type: '.$type);
+    header('X-Content-Type-Options: nosniff');
+    header('Cache-control: public');
+    header('Pragma: cache');
+    header('Etag: "'.$etag.'"');
+    header('Expires: '.gmdate('D, d M Y H:i:s', time() + 60 * 60).' GMT');
+    header('Last-Modified: '.gmdate('D, d M Y H:i:s', filemtime($file)).' GMT');
+}
