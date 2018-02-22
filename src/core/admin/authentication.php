@@ -91,6 +91,11 @@ class ACPAuthentication {
         } else {
             setcookie('fb_auth_tkn', $token, 0,"/".$this->config["paths"]["admin"], "", $this->config["https"]);
         }
+
+        $user = ORM::forTable('admin')->findOne($user_id);
+
+        $_SESSION['username'] = $user->get('username');
+        $_SESSION['email'] = $user->get('email');
     }
 
     /**
@@ -101,12 +106,13 @@ class ACPAuthentication {
             'session_id' => session_id()
         ))->findOne()->delete();
         $this->unsetCookies();
+        $this->destroy();
     }
 
     /**
      * Unset 'session' and 'fb_auth_tkn' cookies
      */
-    public function unsetCookies(){
+    public function destroy(){
         unset($_COOKIE['fb_auth_tkn']);
         session_destroy();
     }
