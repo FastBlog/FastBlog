@@ -40,7 +40,8 @@ if($fastblog->config["mysql"]["host"] != ""){
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ),
         'logging' => true,
-        'caching' => false
+        'caching' => false,
+        'return_result_sets' => true
     ));
 }
 /*

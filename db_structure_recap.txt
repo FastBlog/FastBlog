@@ -6,7 +6,7 @@ TABLE: articles
     month int(2),
     year int(4),
     publishing_date datetime NULL,
-    allowed int(1) DEFAULT 0,
+    published int(1) DEFAULT 0,
     PRIMARY KEY (id)
 
 TABLE: admin

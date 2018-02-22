@@ -56,11 +56,10 @@ class Article {
     public function load() {
         $filename = STORAGE_PATH.$this->id.'.fba';
         if (file_exists($filename)) {
-
             /*
              * Split the file where the blocks terminate "<!--SPLITME-->"
              */
-            $text = file_get_contents($filename, true, null);
+            $text = file_get_contents($filename);
             $array = explode("<!--SPLITME-->",$text);
 
             // Set the texts for this article
