@@ -57,12 +57,6 @@ $klein->respond(function ($request, $response, $service) {
         return preg_match('/^[0-9a-z-]++$/i', $str);
     });
 });
-
-$klein->respond(function ($request, $response, $service) {
-    $service->addValidator('string', function ($str) {
-        return preg_match('/^[0-9a-z-]++$/i', $str);
-    });
-});
 /*
  * Resource routing
  */
