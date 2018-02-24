@@ -1,0 +1,41 @@
+<head>
+    <link rel='stylesheet' type="text/css" href='/resources/style.css' />
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            if(getUrlVars()["error"] === "1") {
+                $(".login form .error").show();
+            }
+            if(getUrlVars()["logout"] === "1") {
+                $(".login form .logout").show();
+            }
+        });
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+    </script>
+    <title>Login - FastBlog</title>
+</head>
+<body style="background-color:#333; height:100%; width:100%;">
+<div class="center-box">
+    <div class="fastblog" style="margin:auto;">Fast<font color="#fff">Blog</font></div>
+    <div align="center" style="font-size:12px;">Admin Control Panel</div>
+    <div class="login">
+        <form action="/<?php echo $this->escape($this->admin_path)?>/authentication/login" method="post">
+            <div class="alert error" style="display:none">You are using a wrong email/password. Please try again<br></div><br>
+            <div class="alert logout" style="display:none">Logout successful<br></div><br>
+            <input type="text" name="email" id="email" placeholder="Email"> <br><br>
+            <input type="password" name="password" id="password" placeholder="Password"> <br><br>
+            <input type="checkbox" name="rememberme" id="rememberme" placeholder="rememberme"><div style="font-size:13px;display:inline;">Stay logged in</div> <br><br>
+            <button type="submit" value="Login">Login</button>
+        </form>
+    </div>
+</div>
+</body>

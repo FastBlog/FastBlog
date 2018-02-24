@@ -1,6 +1,6 @@
 <?php
 /**
  * FastBlog | routes.php
- * //File description
+ * Routes file for the acp dashboard functions
  * License: BSD-2-Clause
  */

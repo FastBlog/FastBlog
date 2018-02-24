@@ -25,6 +25,7 @@ $configuration = new Configuration();
 $fastblog = new stdClass();
 $fastblog->config = $configuration->getConfig();
 $fastblog->databaseutils = new DatabaseUtils();
+$fastblog->authentication = null;
 $fastblog->basepath = BASE_PATH;
 
 /*
@@ -56,6 +57,12 @@ $klein->respond(function ($request, $response, $service) {
         return preg_match('/^[0-9a-z-]++$/i', $str);
     });
 });
+
+$klein->respond(function ($request, $response, $service) {
+    $service->addValidator('string', function ($str) {
+        return preg_match('/^[0-9a-z-]++$/i', $str);
+    });
+});
 /*
  * Resource routing
  */
@@ -76,17 +83,14 @@ include SRC_PATH.'routes/pages/routes.php';
  * Admin routing
  */
 include SRC_PATH.'routes/admin/routes.php';
+
 /*
  * Error handling
- */
+
 $klein->onHttpError(function($code, $klein) use ($fastblog) {
     $request = $klein->request();
-    $response = $klein->response();
     $service = $klein->service();
     $config = $fastblog->config;
-	if (!$response->useCustomErrors()) {
-        return;
-    }
     switch($code) {
         case '404': {
             if ($request->method('get')) {
@@ -97,4 +101,5 @@ $klein->onHttpError(function($code, $klein) use ($fastblog) {
     }
 });
 
+*/
 $klein->dispatch();

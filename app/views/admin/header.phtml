@@ -1,0 +1,47 @@
+<head>
+    <link rel='stylesheet' type="text/css" href='/resources/style.css' />
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function () {
+            setNavigation();
+        });
+
+        function setNavigation() {
+            var path = window.location.pathname;
+            path = path.replace(/\/$/, "");
+            path = decodeURIComponent(path);
+
+            $(".horizontal-menu a").each(function () {
+                if (!$(this).hasClass("fastblog")) {
+                    var href = $(this).attr('href');
+                    if (path.indexOf(href) !== -1) {
+                        $(this).closest('li').addClass('active');
+                        document.title = $(this).attr('data-title');
+                    }
+                }
+            });
+            $(".left-menu a").each(function () {
+                var href = $(this).attr('href');
+                if (path.indexOf(href) !== -1) {
+                    $(this).closest('li').addClass('active');
+                    document.title = $(this).attr('data-title');
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="horizontal-menu">
+        <ul>
+            <li><a class="fastblog" href="/<?php echo $this->escape($this->admin_path)?>/dashboard" style="padding: 0;">Fast<font color="#fff">Blog</font></a></li>
+            <li><a href="/<?php echo $this->escape($this->admin_path)?>/dashboard" data-title="Dashboard - FastBlog">Dashboard</a></li>
+            <li><a href="/<?php echo $this->escape($this->admin_path)?>/articles" data-title="Articles - FastBlog">Articles</a></li>
+            <li><a href="/<?php echo $this->escape($this->admin_path)?>/users" data-title="Users management - FastBlog">Users Management</a></li>
+            <li style="float:right"><a href="/<?php echo $this->escape($this->admin_path)?>/authentication/logout" data-title="Logout - FastBlog">Logout</a></li>
+            <li style="float:right"><a href="/<?php echo $this->escape($this->admin_path)?>/me" data-title="<?php echo $this->escape($this->username)?> - FastBlog"><?php echo $this->escape($this->username)?></a></li>
+        </ul>
+    </div>
