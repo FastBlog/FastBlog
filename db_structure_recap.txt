@@ -15,11 +15,3 @@ TABLE: admin
     email varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
     PRIMARY KEY (id)
-
-TABLE: admin_sessions
-    session_id varchar(40) NOT NULL,
-    admin_id int(12) NOT NULL,
-    start datetime NULL,
-    ip varchar(16) NOT NULL,
-    token varchar(255) NOT NULL
-    PRIMARY KEY (session_id)
