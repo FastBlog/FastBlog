@@ -23,9 +23,9 @@ $klein->respond('/article/[i:year]/[i:month]/[*:title]', function ($request, $re
                 'social' => $article->getSocial()
             ));
         } else {
-            $response->code(404);
+            $response->abort(404);
         }
     } catch (\Klein\Exceptions\ValidationException $e) {
-        $response->code(404);
+        $response->abort(404);
     }
 });

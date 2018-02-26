@@ -23,10 +23,10 @@ $klein->respond('/[:title]', function ($request, $response, $service) use($fastb
 
             $service->render(APP_PATH.'views/' . $request->title . '.phtml', $array);
         } else {
-            $response->code(404);
+            $response->abort(404);
         }
     } catch(\Klein\Exceptions\ValidationException $exception) {
-        $response->code(404);
+        $response->abort(404);
     }
 });
 
