@@ -52,7 +52,7 @@ $klein = new Klein();
 /*
  * Add a title validator
  */
-$klein->respond(function ($request, $response, $service) {
+$klein->respond(function ($request, $response, $service, $app) {
     $service->addValidator('string', function ($str) {
         return preg_match('/^[0-9a-z-]++$/i', $str);
     });
@@ -84,10 +84,11 @@ include SRC_PATH.'routes/admin/routes.php';
 $klein->onHttpError(function($code, $klein) use ($fastblog) {
     $service = $router->service();
     switch($code) {
-        case 404: {
+        case 404:
             $service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"]));
-        }
-        break;
+            break;
+        default:
+            break;
     }
 });
 

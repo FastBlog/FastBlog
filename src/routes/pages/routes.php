@@ -6,7 +6,7 @@
  */
 namespace FastBlog\Core;
 
-$klein->respond('/[:title]', function ($request, $response, $service) use($fastblog) {
+$klein->respond('/[:title]', function ($request, $response, $service, $app) use($klein, $fastblog) {
     try {
         $service->validateParam('title')->isString();
 
@@ -23,10 +23,10 @@ $klein->respond('/[:title]', function ($request, $response, $service) use($fastb
 
             $service->render(APP_PATH.'views/public/' . $request->title . '.phtml', $array);
         } else {
-            $response->abort(404);
+            $response->code(404)->body($service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"])));
         }
     } catch(\Klein\Exceptions\ValidationException $exception) {
-        $response->abort(404);
+        $response->code(404)->body($service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"])));
     }
 });
 

@@ -33,7 +33,7 @@ $klein->respond('/resources/[*:file].[:type]', function ($request, $response, $s
 
         $response->body(file_get_contents($file));
     } else {
-        $response->code(404)->body("Resource not found!");
+        $response->code(404)->body($service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"])));
     }
 });
 
@@ -71,7 +71,7 @@ $klein->respond('/images/[*:image].[:type]', function ($request, $response, $ser
 
         $response->body(file_get_contents($file));
     } else {
-        $response->code(404)->body("Image not found!");
+        $response->code(404)->body($service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"])));
     }
 });
 
@@ -91,7 +91,7 @@ $klein->respond('/favicon.ico', function ($request, $response, $service) use($fa
 
         $response->body(file_get_contents($file));
     } else {
-        $response->code(404)->body("Image not found!");
+        $response->code(404)->body($service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"])));
     }
 });
 
