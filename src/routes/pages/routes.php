@@ -7,7 +7,7 @@
 namespace FastBlog\Core;
 
 $klein->respond('/[:title]', function ($request, $response, $service) use($fastblog) {
-    if($request->title != "favicon.ico") {
+    if($request->title !== "favicon.ico") {
         try {
             $service->validateParam('title')->isString();
 
