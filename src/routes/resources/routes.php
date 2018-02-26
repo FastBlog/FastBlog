@@ -38,7 +38,7 @@ $klein->respond('/resources/[*:file].[:type]', function ($request, $response, $s
 });
 
 $klein->respond('/images/[*:image].[:type]', function ($request, $response, $service) use($fastblog) {
-    $file = $fastblog->basepath.'app/resources/images/'.$request->param('image').'.'.$request->param('image');
+    $file = $fastblog->basepath.'app/resources/images/'.$request->param('image').'.'.$request->param('type');
 
     if(file_exists($file)) {
         $tmp_type = "";
