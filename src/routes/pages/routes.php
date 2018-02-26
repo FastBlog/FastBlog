@@ -10,7 +10,7 @@ $klein->respond('/[:title]', function ($request, $response, $service) use($fastb
     try {
         $service->validateParam('title')->isString();
 
-        if(file_exists(APP_PATH.'views/' . $request->title . '.phtml')) {
+        if(file_exists(APP_PATH.'views/public/' . $request->title . '.phtml')) {
             $array = array(
                 'latest' => array()
             );
@@ -21,7 +21,7 @@ $klein->respond('/[:title]', function ($request, $response, $service) use($fastb
                 $array['latest'] = $previews;
             }
 
-            $service->render(APP_PATH.'views/' . $request->title . '.phtml', $array);
+            $service->render(APP_PATH.'views/public/' . $request->title . '.phtml', $array);
         } else {
             $response->abort(404);
         }
