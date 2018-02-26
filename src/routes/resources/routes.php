@@ -43,6 +43,9 @@ $klein->respond('/images/[*:image].[:type]', function ($request, $response, $ser
     if(file_exists($file)) {
         $tmp_type = "";
         switch( $request->param('type') ) {
+            case "ico":
+                $tmp_type="image/x-icon";
+                break;
             case "gif":
                 $tmp_type="image/gif";
                 break;
