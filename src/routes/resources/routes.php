@@ -35,9 +35,10 @@ $klein->respond('/resources/[*:file].[:type]', function ($request, $response, $s
     } else {
         $response->code(404)->body("Resource not found!");
     }
+    $klein->skipRemaining();
 });
 
-$klein->respond('/images/[*:image].[:type]', function ($request, $response, $service) use($fastblog) {
+$klein->respond('/images/[*:image].[:type]', function ($request, $response, $service) use($klein, $fastblog) {
     $file = $fastblog->basepath.'app/resources/images/'.$request->param('image').'.'.$request->param('type');
 
     if(file_exists($file)) {
@@ -73,6 +74,7 @@ $klein->respond('/images/[*:image].[:type]', function ($request, $response, $ser
     } else {
         $response->code(404)->body("Image not found!");
     }
+    $klein->skipRemaining();
 });
 
 $klein->respond('/favicon.ico', function ($request, $response, $service) use($fastblog) {
@@ -93,5 +95,6 @@ $klein->respond('/favicon.ico', function ($request, $response, $service) use($fa
     } else {
         $response->code(404)->body("Image not found!");
     }
+    $klein->skipRemaining();
 });
 

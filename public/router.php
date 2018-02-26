@@ -82,9 +82,10 @@ include SRC_PATH.'routes/admin/routes.php';
  * Error handling
  */
 $klein->onHttpError(function($code, $klein) use ($fastblog) {
+    $service = $router->service();
     switch($code) {
-        case '404': {
-            $klein->service()->render(APP_PATH.'views/404.phtml', array('home' => $fastblog->config["domain"]));
+        case 404: {
+            $service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"]));
         }
         break;
     }
