@@ -56,7 +56,7 @@ $klein->respond(function ($request, $response, $service) {
     $service->addValidator('string', function ($str) {
         return preg_match('/^[0-9a-z-]++$/i', $str);
     });
-});
+})->setCountMatch(false);
 /*
  * Resource routing
  */
@@ -80,20 +80,17 @@ include SRC_PATH.'routes/admin/routes.php';
 
 /*
  * Error handling
-
+ */
 $klein->onHttpError(function($code, $klein) use ($fastblog) {
     $request = $klein->request();
     $service = $klein->service();
     $config = $fastblog->config;
     switch($code) {
         case '404': {
-            if ($request->method('get')) {
-                $service->render(APP_PATH.'views/404.phtml', array('home' => $config["domain"]));
-            }
+            $service->render(APP_PATH.'views/404.phtml', array('home' => $config["domain"]));
         }
-            break;
+        break;
     }
 });
 
-*/
 $klein->dispatch();

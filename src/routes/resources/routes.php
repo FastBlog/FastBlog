@@ -69,7 +69,27 @@ $klein->respond('/images/[*:image].[:type]', function ($request, $response, $ser
             header('Expires: '.gmdate('D, d M Y H:i:s', time() + 60 * 60).' GMT');
         header('Last-Modified: '.gmdate('D, d M Y H:i:s', filemtime($file)).' GMT');
 
-        $response->file($file);
+        $response->body(file_get_contents($file));
+    } else {
+        $response->code(404)->body("Image not found!");
+    }
+});
+
+$klein->respond('/favicon.ico', function ($request, $response, $service) use($fastblog) {
+    $file = $fastblog->basepath.'app/resources/images/favicon.ico';
+
+    if(file_exists($file)) {
+        $etag = md5_file($file);
+        header('Content-Type: image/x-icon');
+        header('X-Content-Type-Options: nosniff');
+        header('Cache-control: public');
+        header('Pragma: cache');
+        header('Etag: "'.$etag.'"');
+        if($fastblog->config["options"]["long_term_cache"])
+            header('Expires: '.gmdate('D, d M Y H:i:s', time() + 60 * 60).' GMT');
+        header('Last-Modified: '.gmdate('D, d M Y H:i:s', filemtime($file)).' GMT');
+
+        $response->body(file_get_contents($file));
     } else {
         $response->code(404)->body("Image not found!");
     }

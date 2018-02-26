@@ -24,7 +24,7 @@ $klein->respond('/setup/confirmation', function ($request, $response, $service) 
             $service->render(BASE_PATH . 'install/configuration.phtml');
         }
     } else {
-        $service->render(APP_PATH.'views/public/404.phtml', array('home' => $config["domain"]));
+        $response->code(404);
     }
 });
 
@@ -37,6 +37,6 @@ $klein->respond('/setup/installation', function ($request, $response, $service) 
             $service->render(BASE_PATH . 'install/configuration.phtml');
         }
     } else {
-        $service->render(APP_PATH.'views/public/404.phtml', array('home' => $config["domain"]));
+        $response->code(404);
     }
 });

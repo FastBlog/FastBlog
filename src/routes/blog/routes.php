@@ -23,9 +23,9 @@ $klein->respond('/article/[i:year]/[i:month]/[*:title]', function ($request, $re
                 'social' => $article->getSocial()
             ));
         } else {
-            $service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"]));
+            $response->code(404);
         }
     } catch (\Klein\Exceptions\ValidationException $e) {
-        $service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"]));
+        $response->code(404);
     }
 });
