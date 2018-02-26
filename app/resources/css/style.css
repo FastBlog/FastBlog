@@ -17,6 +17,10 @@ b {
     color: #b3b3b3;
 }
 
+ul li .p2 {
+    margin-left:20px;
+}
+
 .graybar {
     width:100%;
     background-color: #121212;
