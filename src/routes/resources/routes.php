@@ -27,7 +27,8 @@ $klein->respond('/resources/[*:file].[:type]', function ($request, $response, $s
         header('Cache-control: public');
         header('Pragma: cache');
         header('Etag: "'.$etag.'"');
-        header('Expires: '.gmdate('D, d M Y H:i:s', time() + 60 * 60).' GMT');
+        if($fastblog->config["options"]["long_term_cache"])
+            header('Expires: '.gmdate('D, d M Y H:i:s', time() + 60 * 60).' GMT');
         header('Last-Modified: '.gmdate('D, d M Y H:i:s', filemtime($file)).' GMT');
 
         $response->body(file_get_contents($file));
@@ -61,7 +62,8 @@ $klein->respond('/images/[*:image].[:type]', function ($request, $response, $ser
         header('Cache-control: public');
         header('Pragma: cache');
         header('Etag: "'.$etag.'"');
-        header('Expires: '.gmdate('D, d M Y H:i:s', time() + 60 * 60).' GMT');
+        if($fastblog->config["options"]["long_term_cache"])
+            header('Expires: '.gmdate('D, d M Y H:i:s', time() + 60 * 60).' GMT');
         header('Last-Modified: '.gmdate('D, d M Y H:i:s', filemtime($file)).' GMT');
 
         $response->file($file);

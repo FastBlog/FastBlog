@@ -4,10 +4,8 @@ Simple blog engine, easy to integrate with an existing site built on html-css-js
 
 Project idea
 -----
-I didn't found any blog CMS _(content manage system)_ that semplified **only** the administration process.
-I needed something designed to developer end-users, giving them  a real free hand over a simple and clean template without useless functions.
-
-So after some researches I decided to build my own CMS that should synthesize this idea.
+I have been looking for a blog CMS _(content manage system)_ made for developers that simplified **only** the administration process, but I haven’t found anything similar.
+So I decide to build my own CMS built for developer end-users, giving them a real free hand over a simple and clean template without useless functions.
 
 Composer
 -----

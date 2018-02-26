@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+    margin:0;
+    background-color:#333;
+}
+
+.fastblog {
+    width:200px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    font-size:30px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.horizontal-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width:100%;
+    position:fixed;
+    overflow: hidden;
+    background-color: #121212;
+    z-index: 2;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.horizontal-menu li {
+    float: left;
+}
+
+.horizontal-menu li a {
+    display: block;
+    color: #929292;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.horizontal-menu li a:hover:not(.active) {
+    background-color: #333;
+    color: white;
+}
+
+.horizontal-menu .active {
+    background-color: #333;
+    color: white;
+}
+
+.left-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 50px;
+    width: 200px;
+    background-color: #121212;
+    height: 100%; /* Full height */
+    position: fixed; /* Make it stick, even on scroll */
+    overflow: auto; /* Enable scrolling if the sidenav has too much content */
+    font-family: 'Open Sans', sans-serif;
+    z-index: 1;
+}
+
+.left-menu li {
+    text-align: center;
+}
+
+.left-menu li a {
+    display: block;
+    color: #929292;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+.left-menu li a:hover {
+    background-color: #333;
+    color: white;
+}
+
+.left-menu .active {
+    background-color: #333;
+    color: white;
+}
+
+.right-content {
+    display:block;
+    position: fixed;
+    margin: 50px 0 0 200px;
+    width:calc(100% - 200px);
+    height: calc(100% - 50px);
+    overflow:auto;
+}
+
+.content {
+    padding: 10px;
+}
+
+.center-box {
+    position:fixed;
+    display:block;
+    margin:auto;
+    left: 0;
+    right: 0;
+    top:20%;
+    width: 480px;
+    background-color:#121212;
+    border-radius: 25px;
+    padding: 10px;
+    color: #929292;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.login form {
+    display:block;
+    width:100%;
+    margin-top:15px;
+    text-align: center;
+}
+
+.login form input {
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+    padding: 3px;
+    border: 0;
+    border-radius: 3px;
+}
+
+.login form button {
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+    padding: 5px;
+    border: 0;
+    border-radius: 3px;
+    background-color: #929292;
+    font-weight:bold;
+}
+
+.login form button:hover {
+    background-color: #fff;
+}
+
+.login form .alert {
+    margin-left:15px;
+    margin-right:15px;
+    left: 0;
+    right: 0;
+    background-color:#b30000;
+    border-radius: 25px;
+    padding: 5px;
+    color: #121212;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+}

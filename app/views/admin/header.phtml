@@ -1,5 +1,6 @@
 <head>
-    <link rel='stylesheet' type="text/css" href='/resources/style.css' />
+    <link rel='stylesheet' type="text/css" href='/resources/acp_style.css' />
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -19,7 +20,7 @@
                 if (!$(this).hasClass("fastblog")) {
                     var href = $(this).attr('href');
                     if (path.indexOf(href) !== -1) {
-                        $(this).closest('li').addClass('active');
+                        $(this).closest('a').addClass('active');
                         document.title = $(this).attr('data-title');
                     }
                 }
@@ -27,7 +28,7 @@
             $(".left-menu a").each(function () {
                 var href = $(this).attr('href');
                 if (path.indexOf(href) !== -1) {
-                    $(this).closest('li').addClass('active');
+                    $(this).closest('a').addClass('active');
                     document.title = $(this).attr('data-title');
                 }
             });
