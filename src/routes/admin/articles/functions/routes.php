@@ -11,20 +11,13 @@ use \ORM;
 $klein->with('/'.$fastblog->config["paths"]["admin"].'/articles/list', function () use($klein, $fastblog) {
     $klein->respond('/', function ($request, $response, $service) use ($fastblog) {
 
-        $n = 10; //tmp value
-        $array = array();
+        $n = 10; //Tmp value
 
         $articles = ORM::forTable('articles')->orderByAsc('id')->limit($n)->findMany();
 
-        $i = 0;
-        foreach($articles as $article) {
-            $array[$i] = new Article($article->get('id'));
-            $i++;
-        }
-
         if ($article) {
             $service->render(APP_PATH . 'views/admin/articles/list/index.phtml', array(
-                "articles" => $array
+                "articles" => $articles
             ));
         } else {
             $service->redirect($fastblog->config["paths"]["admin"].'/articles', 302);
