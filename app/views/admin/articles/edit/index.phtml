@@ -52,18 +52,16 @@
             languages: ['xml']
         });
 
-        $(document).ready(function() {
-            var articlequill = new Quill('#article-editor', {
-                theme: 'snow'
-            });
+        var articlequill = new Quill('#article-editor', {
+            theme: 'snow'
+        });
 
-            var socialquill = new Quill('#social-editor', {
-                theme: 'bubble',
-                modules: {
-                    toolbar: false,
-                    syntax: true
-                }
-            });
+        var socialquill = new Quill('#social-editor', {
+            theme: 'bubble',
+            modules: {
+                toolbar: false,
+                syntax: true
+            }
         });
     </script>
     <script>
