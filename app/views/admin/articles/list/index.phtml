@@ -13,7 +13,7 @@
                 foreach ($this->articles as $article) {
                     echo "<tr>";
                     echo "<td>";
-                    $article->get('id');
+                    $this->escape($article->get('id'));
                     echo "</td>";
                     echo "<td>";
                     $this->escape($article->get('alias'));

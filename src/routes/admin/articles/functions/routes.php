@@ -15,7 +15,7 @@ $klein->with('/'.$fastblog->config["paths"]["admin"].'/articles/list', function 
 
         $articles = ORM::forTable('articles')->orderByAsc('id')->limit($n)->findMany();
 
-        if ($article) {
+        if ($articles) {
             $service->render(APP_PATH . 'views/admin/articles/list/index.phtml', array(
                 "articles" => $articles
             ));
