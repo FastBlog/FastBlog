@@ -1,13 +1,14 @@
 <head>
     <link rel='stylesheet' type="text/css" href='/resources/acp_style.css' />
+    <link href="https://cdn.quilljs.com/1.3.5/quill.snow.css" rel="stylesheet">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/images/favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous">
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
     </script>
     <script>
         $(document).ready(function () {
@@ -39,13 +40,13 @@
     </script>
 </head>
 <body>
-    <div class="horizontal-menu">
-        <ul>
-            <li><a class="fastblog" href="/<?php echo $this->escape($this->admin_path)?>/dashboard" style="padding: 0;">Fast<font color="#fff">Blog</font></a></li>
-            <li><a href="/<?php echo $this->escape($this->admin_path)?>/dashboard" data-title="Dashboard - FastBlog">Dashboard</a></li>
-            <li><a href="/<?php echo $this->escape($this->admin_path)?>/articles" data-title="Articles - FastBlog">Articles</a></li>
-            <li><a href="/<?php echo $this->escape($this->admin_path)?>/users" data-title="Users management - FastBlog">Users Management</a></li>
-            <li style="float:right"><a href="/<?php echo $this->escape($this->admin_path)?>/authentication/logout" data-title="Logout - FastBlog">Logout</a></li>
-            <li style="float:right"><a href="/<?php echo $this->escape($this->admin_path)?>/me" data-title="<?php echo $this->escape($this->username)?> - FastBlog"><?php echo $this->escape($this->username)?></a></li>
-        </ul>
-    </div>
+<div class="horizontal-menu">
+    <ul>
+        <li><a class="fastblog" href="/<?php echo $this->escape($this->admin_path)?>/dashboard" style="padding: 0;">Fast<font color="#fff">Blog</font></a></li>
+        <li><a href="/<?php echo $this->escape($this->admin_path)?>/dashboard" data-title="Dashboard - FastBlog">Dashboard</a></li>
+        <li><a href="/<?php echo $this->escape($this->admin_path)?>/articles" data-title="Articles - FastBlog">Articles</a></li>
+        <li><a href="/<?php echo $this->escape($this->admin_path)?>/users" data-title="Users management - FastBlog">Users Management</a></li>
+        <li style="float:right"><a href="/<?php echo $this->escape($this->admin_path)?>/authentication/logout" data-title="Logout - FastBlog">Logout</a></li>
+        <li style="float:right"><a href="/<?php echo $this->escape($this->admin_path)?>/me" data-title="<?php echo $this->escape($this->username)?> - FastBlog"><?php echo $this->escape($this->username)?></a></li>
+    </ul>
+</div>

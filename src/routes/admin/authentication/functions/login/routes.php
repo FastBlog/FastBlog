@@ -19,7 +19,7 @@ $klein->respond('POST', '/'.$fastblog->config["paths"]["admin"].'/authentication
             )->findOne();
             if($user) {
                 $fastblog->authentication->createSession($user->get('id'), $request->rememberme);
-                $response->redirect('/'.$fastblog->config["paths"]["admin"].'/dashboard');
+                $response->redirect('/'.$fastblog->config["paths"]["admin"].'/dashboard', 302);
             }
         } else {
             $response->redirect('/'.$fastblog->config["paths"]["admin"].'/login?error=1', 302);

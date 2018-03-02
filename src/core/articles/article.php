@@ -9,25 +9,23 @@ namespace FastBlog\Core;
 
 class Article {
 
-    private $day;
+    private $id;
+    private $alias;
+    private $preview;
+
     private $month;
     private $year;
-    private $title;
-
-    private $existence = false;
-    private $id;
+    private $publishing_date;
     private $published;
-
-    private $alias;
 
     private $article_title;
     private $article_body;
-    private $article_fb;
+    private $article_comments;
 
-    public function __construct($year, $month, $alias) {
-        $this->year = $year;
-        $this->month = $month;
-        $this->alias = $alias;
+    private $existence = false;
+
+    public function __construct($id) {
+        $this->id = $id;
         $this->init();
     }
 
@@ -36,14 +34,16 @@ class Article {
      */
     public function init() {
         // Load article from db
-        $loader = new DatabaseUtils();
-        $article = $loader->getArticle($this->year, $this->month, $this->alias);
+        $article = ORM::forTable('articles')->findOne($this->id);
 
         // If article exists set variables using the db object
         if($article) {
-            $this->id = $article->get('id');
-            $this->day = $article->get('date');
-            $this->article_title = $article->get('title');
+            $this->alias = $article->get('alias');
+            $this->preview = $article->get('preview');
+
+            $this->month = $article->get('month');
+            $this->year = $article->get('year');
+            $this->publishing_date = $article->get('publishing_date');
             $this->published = $article->get('published');
 
             $this->load();
@@ -63,15 +63,16 @@ class Article {
             $array = explode("<!--SPLITME-->",$text);
 
             // Set the texts for this article
-            $this->article_body = $array[0];
-            $this->article_fb = $array[1];
+            $this->article_title = $array[0];
+            $this->article_body = $array[1];
+            $this->article_comments = $array[2];
 
             // Confirm the existence of the article
             $this->existence = true;
         }
     }
 
-    public function getDay() {
+    public function getId() {
         return $this->day;
     }
 
@@ -83,16 +84,28 @@ class Article {
         return $this->year;
     }
 
+    public function getPublished() {
+        return $this->published;
+    }
+
+    public function getAlias() {
+        return $this->alias;
+    }
+
+    public function getPreview() {
+        return $this->preview;
+    }
+
     public function getTitle() {
-        return $this->title;
+        return $this->article_title;
     }
 
     public function getBody() {
         return $this->article_body;
     }
 
-    public function getSocial() {
-        return $this->article_fb;
+    public function getSocialComments() {
+        return $this->article_comments;
     }
 
     public function exist() {

@@ -6,18 +6,16 @@
  */
 namespace FastBlog\Core;
 
-use \ORM;
+use \ORM, \DateTime;
 
-class ACPNew {
-    private $title;
+class ACPNewArticle {
     private $alias;
     private $preview;
     private $datetime;
     private $published;
     private $content;
 
-    public function __construct($title, $alias, $preview, $datetime, $published, $content) {
-        $this->title = $title;
+    public function __construct($alias, $preview, $datetime, $published, $content) {
         $this->alias = $alias;
         $this->preview = $preview;
         $this->datetime = $datetime;
@@ -26,29 +24,29 @@ class ACPNew {
     }
 
     public function create() {
-        $article = ORM::forTable('articles')->set(array(
-            "title" => $this->title,
+        $date = DateTime::createFromFormat("Y-m-d", $this->datetime);
+        $m = intval($date->format("m"));
+        $y = intval($date->format("Y"));
+        $tmp = ORM::forTable('articles')->where(array(
             "alias" => $this->alias,
-            "preview" => $this->preview,
-            "month" => $this->datetime->m,
-            "year" => $this->datetime->y,
-            "publishing_date" => $this->datetime,
-            "published" => $this->published
-        ))->save();
-        if($article){
-            $tmp = ORM::forTable('articles')->findOne(array(
-                "title" => $this->title,
+            "month" => $m,
+            "year" => $y
+        ))->findOne();
+        if (!$tmp) {
+            $article = ORM::forTable('articles')->create();
+            $article->set(array(
                 "alias" => $this->alias,
                 "preview" => $this->preview,
-                "month" => $this->datetime->m,
-                "year" => $this->datetime->y,
-                "publishing_date" => $this->datetime,
+                "month" => $m,
+                "year" => $y,
+                "publishing_date" => $date->format("Y-m-d"),
                 "published" => $this->published
-            ));
-
-            $filename = STORAGE_PATH.$tmp->get('id').'.fba';
-            file_put_contents($filename, $this->content);
-            return true;
+            ))->save();
+            if ($article) {
+                $filename = STORAGE_PATH . $article->id() . '.fba';
+                file_put_contents($filename, $this->content);
+                return true;
+            }
         }
         return false;
     }

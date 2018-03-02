@@ -1,5 +1,7 @@
 <head>
     <link rel='stylesheet' type="text/css" href='/resources/acp_style.css' />
+    <link rel="shortcut icon" href="/images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon/favicon.ico" type="image/x-icon">
     <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -25,7 +27,7 @@
 </head>
 <body style="background-color:#333; height:100%; width:100%;">
 <div class="center-box">
-    <div class="fastblog" style="margin:auto; font-size:40px;">Fast<font color="#fff">Blog</font></div>
+    <a href="/"><div class="fastblog" style="margin:auto; font-size:40px;">Fast<font color="#fff">Blog</font></div></a>
     <div align="center" style="font-size:12px;">Admin Control Panel</div>
     <div class="login">
         <form action="/<?php echo $this->escape($this->admin_path)?>/authentication/login" method="post">
