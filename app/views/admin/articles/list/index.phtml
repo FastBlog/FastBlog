@@ -1,0 +1,36 @@
+<div class="right-content">
+    <div class="content">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Alias</th>
+                <th>Date</th>
+                <th>Published</th>
+                <th>Actions</th>
+            </tr>
+            <?php
+                foreach ($articles as $article) {
+                    echo "<tr>";
+                    echo "<td>";
+                    $this->escape($article->get('id'));
+                    echo "</td>";
+                    echo "<td>";
+                    $this->escape($article->get('alias'));
+                    echo "</td>";
+                    echo "<td>";
+                    $this->escape($article->get('publishing_date'));
+                    echo "</td>";
+                    echo "<td>";
+                    $this->escape($article->get('published'));
+                    echo "</td>";
+                    echo "<td>";
+                    echo "<a href='articles/edit/".$this->escape($article->get('id')).">EDIT</a>";
+                    echo "<a href='articles/delete/".$this->escape($article->get('id')).">DELETE</a>";
+                    echo "</td>";
+                    echo "</tr>";
+                }
+            ?>
+        </table>
+    </div>
+</div>
+</body>
