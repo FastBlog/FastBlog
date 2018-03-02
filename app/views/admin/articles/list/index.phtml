@@ -9,10 +9,11 @@
                 <th>Actions</th>
             </tr>
             <?php
-                foreach ($articles as $article) {
+            if(isset($this->articles)) {
+                foreach ($this->articles as $article) {
                     echo "<tr>";
                     echo "<td>";
-                    $this->escape($article->get('id'));
+                    $article->get('id');
                     echo "</td>";
                     echo "<td>";
                     $this->escape($article->get('alias'));
@@ -29,6 +30,7 @@
                     echo "</td>";
                     echo "</tr>";
                 }
+            }
             ?>
         </table>
     </div>

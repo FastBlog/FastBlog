@@ -14,7 +14,7 @@ $klein->with('/'.$fastblog->config["paths"]["admin"].'/articles/list', function 
         $n = 10; //tmp value
         $array = array();
 
-        $articles = ORM::forTable('articles')->orderByAsc('id')->findMany()->limit($n);
+        $articles = ORM::forTable('articles')->orderByAsc('id')->limit($n)->findMany();
 
         $i = 0;
         foreach($articles as $article) {
