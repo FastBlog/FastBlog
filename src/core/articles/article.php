@@ -7,6 +7,8 @@
 
 namespace FastBlog\Core;
 
+use \ORM;
+
 class Article {
 
     private $id;
@@ -86,6 +88,10 @@ class Article {
 
     public function getPublished() {
         return $this->published;
+    }
+
+    public function getDate() {
+        return $this->publishing_date;
     }
 
     public function getAlias() {

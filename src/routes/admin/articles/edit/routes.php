@@ -17,6 +17,7 @@ $klein->with('/'.$fastblog->config["paths"]["admin"].'/articles/edit/[i:id]', fu
             $service->redirect($fastblog->config["paths"]["admin"].'/articles', 302);
         }
     });
+
     $klein->respond('POST','/save', function ($request, $response, $service) use ($fastblog) {
         if($fastblog->authentication->isAuthenticated()) {
             $new = new ACPEditArticle($request->id ,$request->alias, $request->preview, $request->datetime, $request->published, $request->content);

@@ -51,4 +51,3 @@ class ACPNewArticle {
         return false;
     }
 }
-

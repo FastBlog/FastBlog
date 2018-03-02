@@ -28,6 +28,7 @@ body {
 
 .horizontal-menu li {
     float: left;
+    height: 50px;
 }
 
 .horizontal-menu li a {
@@ -165,7 +166,7 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.content form {
+.content {
     width: 90%;
     display: block;
     margin:auto;
@@ -191,7 +192,7 @@ body {
     color: red;
 }
 
-.content form::-ms-input-placeholder { /* Microsoft Edge */
+.content form:-ms-input-placeholder { /* Microsoft Edge */
     color: red;
 }
 
@@ -219,9 +220,9 @@ body {
     border-color: #929292;
     color: #929292;
     padding:10px;
-    -webkit-box-shadow: 0px 0px 43px 4px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 43px 4px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 43px 4px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0 0 43px 4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 43px 4px rgba(0,0,0,0.75);
+    box-shadow: 0 0 43px 4px rgba(0,0,0,0.75);
 }
 
 .content form .center button:hover {
@@ -235,7 +236,6 @@ body {
 }
 
 .content form #article-editor {
-    background-color: #fff;
     margin-bottom: 10px;
     max-height: 400px;
     color: #fff;
@@ -245,13 +245,19 @@ body {
 }
 
 .content form #social-editor {
-    background-color: #fff;
     max-height: 188.5px;
     color: #fff;
     background-color: #121212;
     border: solid 2px;
     border-color: #929292;
 }
+
+
+.content form #social-editor pre {
+    margin: 0;
+    max-height:177px;
+}
+
 
 .cont-96 {
     width: calc(96% - 20px);
@@ -285,13 +291,58 @@ body {
     border-color: #929292;
     color: #fff;
     padding:10px;
-    -webkit-box-shadow: 0px 0px 43px 4px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 43px 4px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 43px 4px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0 0 43px 4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 43px 4px rgba(0,0,0,0.75);
+    box-shadow: 0 0 43px 4px rgba(0,0,0,0.75);
 }
 
-.cont-96 .content {
+.cont-96 .cont-content {
     background-color: #121212;
     padding:15px;
+    color: #929292;
+}
+
+table {
+    width: calc(96% - 20px);
+    font-family: 'Open Sans', sans-serif;
+    border-collapse: collapse;
+    margin: 25px auto;
+    padding: 10px;
+}
+
+table td {
+    border: 3px solid #333;
+    text-align: left;
+    padding: 8px;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+table td .half {
+    width: 50%;
+    text-align: center;
+    float: left;
+}
+
+table th {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    line-height: 20px;
+    border: solid 3px #929292;
+    background-color: #121212;
+    color: #fff;
+    padding:10px;
+    -webkit-box-shadow: 0 0 43px 4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 43px 4px rgba(0,0,0,0.75);
+    box-shadow: 0 0 43px 4px rgba(0,0,0,0.75);
+    text-align: left;
+}
+
+table a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+table a:hover {
     color: #929292;
 }

@@ -7,11 +7,11 @@
                         Article Settings
                     </div>
                     <div class="cont-content">
-                        <input class="width100" type="text" name="title" id="title" placeholder="Title"><br>
-                        <input class="width100" type="text" name="alias" id="alias" placeholder="Alias"><br>
-                        <input class="width100" type="text" name="preview" id="preview" placeholder="Preview"><br>
-                        <input class="less" type="date" name="date-time" id="date-time"><br>
-                        <input class="less" type="checkbox" name="published" id="published" value="1"><div style="font-size:15px;display:inline;">Published</div><br>
+                        <input class="width100" type="text" name="title" id="title" placeholder="Title" value="<?php echo $this->escape($this->article->getTitle())?>"<br>
+                        <input class="width100" type="text" name="alias" id="alias" placeholder="Alias" value="<?php echo $this->escape($this->article->getAlias())?>"><br>
+                        <input class="width100" type="text" name="preview" id="preview" placeholder="Preview" value="<?php echo $this->escape($this->article->getPreview())?>"><br>
+                        <input class="less" type="date" name="date-time" id="date-time" value="<?php echo $this->escape($this->article->getDate())?>"><br>
+                        <input class="less" type="checkbox" name="published" id="published" value="<?php echo $this->escape($this->article->getPublished())?>"><div style="font-size:15px;display:inline;">Published</div><br>
                     </div>
                 </div>
                 <div class="right">
@@ -20,7 +20,7 @@
                     </div>
                     <div class="cont-content">
                         <div>
-                            <div id="social-editor"><pre><code class="xml jljs"><code></pre></div>
+                            <div id="social-editor"><pre><code><?php echo $this->escape($this->article->getSocialComments())?><code></pre></div>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,9 @@
                 </div>
                 <div class="cont-content">
                     <div>
-                        <div id="article-editor"></div>
+                        <div id="article-editor">
+                            <?php echo $this->escape($this->article->getBody())?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,9 +42,8 @@
             </div>
         </form>
     </div>
-
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-    <script src="http:////cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/go.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/go.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script src="https://cdn.quilljs.com/1.3.5/quill.js"></script>
     <script>
@@ -51,16 +52,18 @@
             languages: ['xml']
         });
 
-        var articlequill = new Quill('#article-editor', {
-            theme: 'snow'
-        });
+        $(document).ready(function() {
+            var articlequill = new Quill('#article-editor', {
+                theme: 'snow'
+            });
 
-        var socialquill = new Quill('#social-editor', {
-            theme: 'bubble',
-            modules: {
-                toolbar: false,
-                syntax: true
-            }
+            var socialquill = new Quill('#social-editor', {
+                theme: 'bubble',
+                modules: {
+                    toolbar: false,
+                    syntax: true
+                }
+            });
         });
     </script>
     <script>
@@ -76,7 +79,7 @@
             var content = title + "<!--SPLITME-->" + editor + "<!--SPLITME-->" + social;
             $.ajax({
                 type: "POST",
-                url: "new/save",
+                url: "edit/save",
                 data: "alias=" + encodeURIComponent(alias) + "&preview=" + encodeURIComponent(preview) + "&datetime=" + datetime + "&published=" + published + "&content=" + encodeURIComponent(content),
                 success: function () {
                     //Add popup message and redirect to /articles

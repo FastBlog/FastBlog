@@ -7,7 +7,7 @@
 namespace FastBlog\Core;
 
 $klein->with('/'.$fastblog->config["paths"]["admin"].'/articles/new', function () use($klein, $fastblog) {
-    $klein->respond('GET', '/', function ($request, $response, $service) use ($fastblog) {
+    $klein->respond('GET', '', function ($request, $response, $service) use ($fastblog) {
         $service->render(APP_PATH . 'views/admin/articles/new/index.phtml');
     });
 
