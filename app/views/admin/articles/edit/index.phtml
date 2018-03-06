@@ -11,7 +11,7 @@
                         <input class="width100" type="text" name="alias" id="alias" placeholder="Alias" value="<?php echo $this->escape($this->article->getAlias())?>"><br>
                         <input class="width100" type="text" name="preview" id="preview" placeholder="Preview" value="<?php echo $this->escape($this->article->getPreview())?>"><br>
                         <input class="less" type="date" name="date-time" id="date-time" value="<?php echo $this->escape($this->article->getDate())?>"><br>
-                        <input class="less" type="checkbox" name="published" id="published" value="<?php echo $this->escape($this->article->getPublished())?>"><div style="font-size:15px;display:inline;">Published</div><br>
+                        <input class="less" type="checkbox" name="published" id="published" value="1" <?php echo ($this->article->getPublished()==1 ? 'checked' : '');?>><div style="font-size:15px;display:inline;">Published</div><br>
                     </div>
                 </div>
                 <div class="right">
@@ -32,7 +32,7 @@
                 <div class="cont-content">
                     <div>
                         <div id="article-editor">
-                            <?php echo $this->escape($this->article->getBody())?>
+                            <?php echo $this->article->getBody()?>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,6 @@
     <script>hljs.initHighlightingOnLoad();</script>
     <script src="https://cdn.quilljs.com/1.3.5/quill.js"></script>
     <script>
-
         hljs.configure({   // optionally configure hljs
             languages: ['xml']
         });
@@ -77,7 +76,7 @@
             var content = title + "<!--SPLITME-->" + editor + "<!--SPLITME-->" + social;
             $.ajax({
                 type: "POST",
-                url: "edit/save",
+                url: window.location.href + "/save",
                 data: "alias=" + encodeURIComponent(alias) + "&preview=" + encodeURIComponent(preview) + "&datetime=" + datetime + "&published=" + published + "&content=" + encodeURIComponent(content),
                 success: function () {
                     //Add popup message and redirect to /articles

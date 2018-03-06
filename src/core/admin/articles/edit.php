@@ -6,7 +6,7 @@
  */
 namespace FastBlog\Core;
 
-use \ORM;
+use \ORM, \DateTime;
 
 class ACPEditArticle {
     private $id;
