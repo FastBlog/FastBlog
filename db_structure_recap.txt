@@ -1,11 +1,11 @@
 TABLE: articles
     id int NOT NULL AUTO_INCREMENT,
     alias varchar(255) NOT NULL,
-    preview varchar(255) NOT NULL,
-    month int(2),
-    year int(4),
+    month int(2) NOT NULL,
+    year int(4) NOT NULL,
+    published int(1) NOT NULL DEFAULT 0,
+    preview varchar(255) NOT NULL DEFAULT '',
     publishing_date date NULL,
-    published int(1) DEFAULT 0,
     PRIMARY KEY (id)
 
 TABLE: admin

@@ -22,6 +22,7 @@ class Article {
 
     private $article_title;
     private $article_body;
+    private $article_description;
     private $article_comments;
 
     private $existence = false;
@@ -58,17 +59,20 @@ class Article {
     public function load() {
         $filename = STORAGE_PATH.$this->id.'.fba';
         if (file_exists($filename)) {
-            /*
-             * Split the file where the blocks terminate "<!--SPLITME-->"
-             */
+
+            // Split the file where the blocks terminate '<!--SPLITME-->'
             $text = file_get_contents($filename);
-            $array = explode("<!--SPLITME-->",$text);
+            $array = explode('<!--SPLITME-->',$text);
 
             // Set the texts for this article
             $this->article_title = $array[0];
             $this->article_body = $array[1];
             $this->article_comments = $array[2];
-
+            if(strpos($this->article_body, '<!--DESCRIPTION-->')) {
+                $this->article_description = strip_tags((explode('<!--DESCRIPTION-->', $this->article_body))[0]);
+            } else {
+                $this->article_description = '';
+            }
             // Confirm the existence of the article
             $this->existence = true;
         }
@@ -108,6 +112,10 @@ class Article {
 
     public function getBody() {
         return $this->article_body;
+    }
+
+    public function getDescription() {
+        return $this->article_description;
     }
 
     public function getSocialComments() {

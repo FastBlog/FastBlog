@@ -6,22 +6,35 @@
  */
 namespace FastBlog\Core;
 
-$klein->respond('/article/[i:year]/[i:month]/[*:title]', function ($request, $response, $service) use($fastblog){
+use \ORM;
+
+$klein->respond('/article/[i:year]/[i:month]/[*:alias]', function ($request, $response, $service) use($fastblog){
     try {
         $service->validateParam('year')->isInt();
         $service->validateParam('month')->isInt();
-        $service->validateParam('title')->isString();
-
-        $article = new Article($request->year, $request->month, $request->title);
-        if($article->exist()) {
-            $service->render('article.phtml', array(
-                'p_day' => $article->getDay(),
-                'p_month' => $article->getMonth(),
-                'p_year' => $article->getYear(),
-                'title' => $article->getTitle(),
-                'body' => $article->getBody(),
-                'social' => $article->getSocial()
-            ));
+        $service->validateParam('alias')->isString();
+        $a = ORM::forTable('articles')->where(array(
+            'year' => $request->year,
+            'month' => $request->month,
+            'alias' => $request->alias
+        ))->findOne();
+        if($a) {
+            $article = new Article($a->id());
+            if($article->exist()) {
+                $service->render(APP_PATH . 'views/template/article/article.phtml', array(
+                    'article_url' => $fastblog->config["domain"] . '/article/' . $request->year . '/' . $request->month . '/' . $request->alias,
+                    'month' => $article->getMonth(),
+                    'year' => $article->getYear(),
+                    'date' => $article->getDate(),
+                    'title' => $article->getTitle(),
+                    'description' => $article->getDescription(),
+                    'body' => $article->getBody(),
+                    'social' => $article->getSocialComments(),
+                    'image' => $article->getPreview()
+                ));
+            } else {
+                $response->code(404)->body($service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"])));
+            }
         } else {
             $response->code(404)->body($service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"])));
         }

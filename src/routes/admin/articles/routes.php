@@ -8,7 +8,7 @@ namespace FastBlog\Core;
 
 $klein->with('/'.$fastblog->config["paths"]["admin"].'/articles', function () use($klein, $fastblog) {
     $klein->respond(function ($request, $response, $service) use ($fastblog) {
-        if($fastblog->authentication->isAuthenticated()) {
+        if ($fastblog->authentication->isAuthenticated()) {
             $service->render(
                 APP_PATH . 'views/admin/articles/submenu.phtml',
                 array(
@@ -19,7 +19,9 @@ $klein->with('/'.$fastblog->config["paths"]["admin"].'/articles', function () us
     });
 
     $klein->respond('/delete/[i:id]', function ($request, $response, $service) use ($fastblog) {
-        $service->render(APP_PATH . 'views/admin/articles/delete/index.phtml'); //TODO: Send articles info to template
+        if ($fastblog->authentication->isAuthenticated()) {
+            $service->render(APP_PATH . 'views/admin/articles/delete/index.phtml'); //TODO: Send articles info to template
+        }
     });
 });
 
