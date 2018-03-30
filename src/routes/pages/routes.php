@@ -9,17 +9,15 @@ namespace FastBlog\Core;
 $klein->respond('/[:title]', function ($request, $response, $service) use($klein, $fastblog) {
     try {
         $service->validateParam('title')->isString();
-        if($request->title !== "admin") {
+        if (!in_array($request->title . '.phtml', $fastblog->config["options"]["not_article_name"])) {
             if (file_exists(APP_PATH . 'views/public/' . $request->title . '.phtml')) {
                 $array = array(
                     'latest' => array()
                 );
 
-                if (in_array($request->title . '.phtml', $fastblog->config["options"]["article_preview_allowed_pages"])) {
-                    $loaderutil = $fastblog->databaseutils;
-                    $previews = $loaderutil->getLastXArticles($fastblog->config["options"]["latest_articles_preview_number"]);
-                    $array['latest'] = $previews;
-                }
+                $loaderutil = $fastblog->databaseutils;
+                $previews = $loaderutil->getLastXArticles($fastblog->config["options"]["latest_articles_preview_number"]);
+                $array['latest'] = $previews;
 
                 $service->render(APP_PATH . 'views/public/' . $request->title . '.phtml', $array);
             } else {

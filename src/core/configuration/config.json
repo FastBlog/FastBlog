@@ -14,6 +14,7 @@
   "options": {
     "long_term_cache": false,
     "article_preview_allowed_pages": [],
-    "latest_articles_preview_number": ""
+    "latest_articles_preview_number": "",
+    "not_article_name": ["admin","install","resources"]
   }
 }
