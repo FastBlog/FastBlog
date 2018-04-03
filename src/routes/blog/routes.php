@@ -22,7 +22,7 @@ $klein->respond('/article/[i:year]/[i:month]/[*:alias]', function ($request, $re
             $article = new Article($a->id());
             if($article->exist()) {
                 $service->render(APP_PATH . 'views/template/article/article.phtml', array(
-                    'article_url' => $fastblog->config["domain"] . '/article/' . $request->year . '/' . $request->month . '/' . $request->alias,
+                    'article_url' => 'http://'.$fastblog->config["domain"] . '/article/' . $request->year . '/' . $request->month . '/' . $request->alias,
                     'month' => $article->getMonth(),
                     'year' => $article->getYear(),
                     'date' => $article->getDate(),
