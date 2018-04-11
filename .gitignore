@@ -8,17 +8,3 @@ composer.phar
 # Commit your application's lock file http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file
 # You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
 # composer.lock
-
-# Include FastBlog system files and directory
-# CSS folder
-/app/resources/css/*
-!/app/resources/css/.htaccess
-!/app/resources/css/system/*
-# Images folder
-/app/resources/images/*
-!/app/resources/images/.htaccess
-# Views folder
-/app/views/*
-!/app/views/admin/*
-!/app/views/public/.htaccess
-!/app/views/template/article/.htaccess
