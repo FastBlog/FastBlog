@@ -9,15 +9,16 @@ namespace FastBlog\Core;
 use \ORM;
 
 $klein->with('/'.$fastblog->config["paths"]["admin"].'/articles/list', function () use($klein, $fastblog) {
-    $klein->respond('', function ($request, $response, $service) use ($fastblog) {
-        if ($fastblog->authentication->isAuthenticated()) {
 
-            $n = 10; //Tmp value
+    if ($fastblog->authentication->isAuthenticated()) {
+        $klein->respond('', function ($request, $response, $service) use ($fastblog) {
+            $n = 10; //TODO: Configurable value
 
             $articles = ORM::forTable('articles')->orderByAsc('id')->limit($n)->findArray();
-            $service->render(APP_PATH . 'views/admin/articles/list/index.phtml', array(
+            $service->render(APP_PATH . 'views/admin/acp/articles/list/index.phtml', array(
                 'articles' => $articles
             ));
-        }
-    });
+        });
+    }
+
 });

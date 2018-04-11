@@ -9,7 +9,7 @@ namespace FastBlog\Core;
 $klein->respond('/[:title]', function ($request, $response, $service) use($klein, $fastblog) {
     try {
         $service->validateParam('title')->isString();
-        if (!in_array($request->title . '.phtml', $fastblog->config["options"]["not_article_name"])) {
+        if (!in_array($request->title, $fastblog->config["options"]["not_article_name"])) {
             if (file_exists(APP_PATH . 'views/public/' . $request->title . '.phtml')) {
                 $array = array(
                     'latest' => array()

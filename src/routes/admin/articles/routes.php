@@ -7,22 +7,15 @@
 namespace FastBlog\Core;
 
 $klein->with('/'.$fastblog->config["paths"]["admin"].'/articles', function () use($klein, $fastblog) {
-    $klein->respond(function ($request, $response, $service) use ($fastblog) {
-        if ($fastblog->authentication->isAuthenticated()) {
-            $service->render(
-                APP_PATH . 'views/admin/articles/submenu.phtml',
-                array(
-                    "admin_path" => $fastblog->config["paths"]["admin"]
-                )
-            );
-        }
-    });
 
-    $klein->respond('/delete/[i:id]', function ($request, $response, $service) use ($fastblog) {
-        if ($fastblog->authentication->isAuthenticated()) {
-            $service->render(APP_PATH . 'views/admin/articles/delete/index.phtml'); //TODO: Send articles info to template
-        }
-    });
+    if ($fastblog->authentication->isAuthenticated()) {
+        $klein->respond('/delete/[i:id]', function ($request, $response, $service) use ($fastblog) {
+            if ($fastblog->authentication->isAuthenticated()) {
+                $service->render(APP_PATH . 'views/admin/acp/articles/delete/index.phtml'); //TODO: Send articles info to template
+            }
+        });
+    }
+
 });
 
 include SRC_PATH . 'routes/admin/articles/new/routes.php';

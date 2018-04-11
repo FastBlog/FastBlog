@@ -6,20 +6,14 @@
  */
 namespace FastBlog\Core;
 
-$klein->with('/'.$fastblog->config["paths"]["admin"].'/me', function () use($klein, $fastblog) {
-    $klein->respond(function ($request, $response, $service) use($fastblog) {
-        if($fastblog->authentication->isAuthenticated()) {
-            $service->render(APP_PATH.'views/admin/ucp/submenu.phtml',
-                array(
-                    "admin_path" => $fastblog->config["paths"]["admin"]
-                )
-            );
-        }
-    });
+$klein->with('/'.$fastblog->config["paths"]["admin"].'/ucp', function () use($klein, $fastblog) {
 
-    $klein->respond('', function ($request, $response, $service) use($fastblog) {
-        if($fastblog->authentication->isAuthenticated()) {
-            $service->render(APP_PATH.'views/admin/ucp/index.phtml');
-        }
-    });
+    if($fastblog->authentication->isAuthenticated()) {
+        $klein->respond('', function ($request, $response, $service) use($fastblog) {
+            if($request->uri() === '/'.$fastblog->config["paths"]["admin"].'/ucp') {
+                $service->render(APP_PATH . 'views/admin/acp/ucp/index.phtml');
+            }
+        });
+    }
+
 });

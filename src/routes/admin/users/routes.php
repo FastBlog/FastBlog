@@ -7,19 +7,9 @@
 namespace FastBlog\Core;
 
 $klein->with('/'.$fastblog->config["paths"]["admin"].'/users', function () use($klein, $fastblog) {
-    $klein->respond(function ($request, $response, $service) use($fastblog) {
-        if($fastblog->authentication->isAuthenticated()) {
-            $service->render(APP_PATH.'views/admin/users/submenu.phtml',
-                array(
-                    "admin_path" => $fastblog->config["paths"]["admin"]
-                )
-            );
-        }
-    });
-
     $klein->respond('', function ($request, $response, $service) use($fastblog) {
         if($fastblog->authentication->isAuthenticated()) {
-            $service->render(APP_PATH.'views/admin/users/index.phtml');
+            $service->render(APP_PATH.'views/admin/acp/users/index.phtml');
         }
     });
 });
