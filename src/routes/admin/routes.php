@@ -42,16 +42,18 @@ $klein->with('/'.$fastblog->config["paths"]["admin"], function () use($klein, $f
     });
 });
 
-include SRC_PATH.'routes/admin/articles/routes.php';
+/*
+ * Includes all the routes under 'src/routes/admin' recursively
+ */
+$adm_routes = SRC_PATH.'routes/admin/';
+$adm_dir = scandir($adm_routes);
 
-include SRC_PATH.'routes/admin/authentication/routes.php';
-
-include SRC_PATH.'routes/admin/dashboard/routes.php';
-
-include SRC_PATH.'routes/admin/ucp/routes.php';
-
-include SRC_PATH.'routes/admin/users/routes.php';
-
-if (file_exists(SRC_PATH.'routes/admin/custom/routes.php')) {
-    include SRC_PATH.'routes/admin/custom/routes.php';
+foreach($adm_dir as $adm_entry) {
+    if (!in_array($adm_entry, array(".",".."))) {
+        if (is_dir($adm_routes . $adm_entry)) {
+            if (file_exists($adm_routes . $adm_entry . '/routes.php')) {
+                include $adm_routes . $adm_entry . '/routes.php';
+            }
+        }
+    }
 }

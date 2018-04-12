@@ -45,10 +45,12 @@ if($fastblog->config["mysql"]["host"] != ""){
         'return_result_sets' => true
     ));
 }
+
 /*
  * Setup router
  */
 $klein = new Klein();
+
 /*
  * Add a title validator
  */
@@ -57,26 +59,22 @@ $klein->respond(function ($request, $response, $service, $app) {
         return preg_match('/^[0-9a-z-]++$/i', $str);
     });
 });
+
 /*
- * Resource routing
+ * Includes all the routes under 'src/routes' recursively
  */
-include SRC_PATH.'routes/resources/routes.php';
-/*
- * Installation routing
- */
-include SRC_PATH.'routes/install/routes.php';
-/*
- * Article routing
- */
-include SRC_PATH.'routes/blog/routes.php';
-/*
- * Blog routing
- */
-include SRC_PATH.'routes/pages/routes.php';
-/*
- * Admin routing
- */
-include SRC_PATH.'routes/admin/routes.php';
+$routes = SRC_PATH.'routes/';
+$dir = scandir($routes);
+
+foreach($dir as $routes_entry) {
+    if (!in_array($routes_entry, array(".",".."))) {
+        if (is_dir($routes . $routes_entry)) {
+            if (file_exists($routes . $routes_entry . '/routes.php')) {
+                include $routes . $routes_entry . '/routes.php';
+            }
+        }
+    }
+}
 
 /*
  * Error handling
