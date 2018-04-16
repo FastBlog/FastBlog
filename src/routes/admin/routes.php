@@ -17,8 +17,9 @@ $klein->with('/'.$fastblog->config["paths"]["admin"], function () use($klein, $f
         }
     });
 
-    $klein->respond('/[:page]',function ($request, $response, $service) use($fastblog) {
-        if($request->page !== 'login' && $request->page !== 'authentication'){
+    $klein->respond('/[*:page]',function ($request, $response, $service) use($fastblog) {
+        $page = explode ('/', $request->page)[0];
+        if($page !== 'login' && $page !== 'authentication'){
             if($fastblog->authentication->isAuthenticated()) {
                 $service->render(
                     APP_PATH.'views/admin/acp/header.phtml',
@@ -27,7 +28,7 @@ $klein->with('/'.$fastblog->config["paths"]["admin"], function () use($klein, $f
                         'admin_path' => $fastblog->config["paths"]["admin"]
                     )
                 );
-                $submenu = APP_PATH.'views/admin/acp/'.$request->page.'/submenu.phtml';
+                $submenu = APP_PATH.'views/admin/acp/'.$page.'/submenu.phtml';
                 if(file_exists($submenu)) {
                     $service->render($submenu,
                         array(

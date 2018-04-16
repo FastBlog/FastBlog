@@ -28,3 +28,11 @@ $klein->respond('POST', '/'.$fastblog->config["paths"]["admin"].'/authentication
         $response->redirect('/'.$fastblog->config["paths"]["admin"].'/login?error=1', 302);
     }
 });
+
+$klein->respond('GET', '/'.$fastblog->config["paths"]["admin"].'/authentication/login', function ($request, $response, $service) use($fastblog) {
+    if($fastblog->authentication->isAuthenticated()) {
+        $response->redirect('/' . $fastblog->config["paths"]["admin"] . '/dashboard');
+    } else if($request->uri() === '/'.$fastblog->config["paths"]["admin"]){
+        $response->redirect('/'.$fastblog->config["paths"]["admin"].'/login', 302);
+    }
+});
