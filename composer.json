@@ -1,11 +1,11 @@
 {
-  "name": "HexelDev/FastBlog",
+  "name": "FastBlog/FastBlog",
   "description": "Simple blog engine, easy to integrate with an existing site built on php-html-css-js",
   "minimum-stability": "stable",
   "license": "BSD-2-Clause",
   "authors": [
     {
-      "name": "HexelDev"
+      "name": "Hex3l"
     }
   ],
   "require": {
