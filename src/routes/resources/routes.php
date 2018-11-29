@@ -36,7 +36,7 @@ $klein->respond('/resources/[*:file].[:type]', function ($request, $response, $s
         $response->code(404)->body($service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"])));
     }
 });
-
+/*
 $klein->respond('/images/[*:image].[:type]', function ($request, $response, $service) use($klein, $fastblog) {
     $file = $fastblog->basepath.'app/resources/images/'.$request->param('image').'.'.$request->param('type');
 
@@ -74,3 +74,4 @@ $klein->respond('/images/[*:image].[:type]', function ($request, $response, $ser
         $response->code(404)->body($service->render(APP_PATH.'views/public/404.phtml', array('home' => $fastblog->config["domain"])));
     }
 });
+*/
