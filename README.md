@@ -1,3 +1,6 @@
+PROJECT MOVED TO https://github.com/CinchMS/CinchMS
+=====
+
 FastBlog
 ======
 **Simple blog engine built for developer end-users**, easy to integrate with an existing site built on html-css-js
